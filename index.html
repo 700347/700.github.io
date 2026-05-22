@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红寻龙江 JOIN US</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: linear-gradient(90deg, #ff2b38, #ff953e);
+    min-height: 100vh;
+    font-family: "Microsoft YaHei", sans-serif;
+    overflow-x: hidden;
+}
+.wrap {
+    display: flex;
+    width: 96%;
+    max-width: 1300px;
+    height: auto;
+    min-height: 780px;
+    margin: 40px auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.05);
+}
+
+/* ======================
+左侧 动态背景图 + 渐变融图 (完美保留)
+======================= */
+.left-side {
+    width: 45%;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+    overflow: hidden;
+    /* 核心：在容器上应用渐变蒙版 */
+    mask-image: linear-gradient(to left, transparent 0%, black 40%);
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, black 40%);
+}
+.left-side::before {
+    content: "";
+    position: absolute;
+    width: 150%;    /* 图片比容器大，保证能移动 */
+    height: 100%;
+    background: url("left-bg.jpg") center / cover;
+    animation: slideLeft 25s linear infinite; /* 25秒缓慢左移 */
+}
+/* 关键：从右 → 左 平滑移动 */
+@keyframes slideLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-35%); }
+}
+
+.right-side {
+    width: 55%;
+    padding: 60px 40px;
+    position: relative;
+}
+
+.main-title {
+    font-size: 64px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 4px 4px 0 #3046ff, 0 0 15px rgba(255,255,255,0.5);
+    margin-bottom: 20px; /* 修复副标题不显示 */
+    letter-spacing: 4px;
+}
+.join-us-tag {
+    text-align: center;
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 4px;
+    margin-bottom: 60px;
+    opacity: 0.95;
+}
+
+/* 两个竖方块并排 */
+.box-row {
+    display: flex;
+    gap: 180px;
+    justify-content: center;
+}
+
+/* 竖向触发按钮 */
+.vert-box {
+    width: 65px;
+    height: 280px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 10;
+}
+.vert-box:hover {
+    background: rgba(255,255,255,0.55);
+}
+
+.vert-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+/* 展开面板 */
+.pop-content {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 260px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: width 0.5s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.vert-box.active .pop-content {
+    width: 200px;
+    height: auto;
+    min-height: 260px;
+}
+
+.inner-text {
+    padding: 22px;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.3s 0.2s;
+    line-height: 1.7;
+    white-space: normal;
+}
+.vert-box.active .inner-text {
+    opacity: 1;
+}
+.inner-text h2 {
+    color: #ff2255;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 20px;
+}
+.inner-text ul {
+    padding-left: 18px;
+}
+.inner-text li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+.inner-text p {
+    font-size: 14px;
+}
+
+/* 二维码 */
+.qr-area {
+    margin-top: 90px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+.qr-card {
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 12px;
+    margin: 15px auto 0;
+    overflow: hidden;
+    opacity: 0.8;
+}
+.qr-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="left-side"></div>
+    <div class="right-side">
+        <div class="main-title">红寻龙江</div>
+        <div class="join-us-tag">JOIN US</div>
+        
+        <div class="box-row">
+            <div class="vert-box">
+                <div class="vert-text">小队简介</div>
+                <div class="pop-content">
+                    <div class="inner-text">
+                        <h2>小队简介</h2>
+                        <p>本小队为校级重大选题项目“传承红色基因 革命史迹数字化寻访团”组成部分。</p>
+                        <p>奔赴红色底蕴深厚的黑龙江省，实地走访调研，以数字化形式留存、传播红色历史文化。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vert-box">
+                <div class="vert-text">欢迎加入</div>
+                <div class="pop-content">
+                    <div class="inner-text">
+                        <h2>期待您的加入</h2>
+                        <ul>
+                            <li>宣传组：海报设计、PPT制作</li>
+                            <li>文案组：推文编辑、文稿撰写</li>
+                            <li>摄影组：实景拍摄、视频剪辑</li>
+                            <li>技术组：程序操作、数码运维</li>
+                        </ul>
+                        <p style="margin-top:10px;">携手同行，以青春之力传承红色精神</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="qr-area">
+            扫码加入咨询群
+            <div class="qr-card"><img src="qrcode.png" alt="二维码"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const boxes = document.querySelectorAll('.vert-box');
+boxes.forEach(box => {
+    box.addEventListener('click', () => {
+        boxes.forEach(b => b !== box && b.classList.remove('active'));
+        box.classList.toggle('active');
+    });
+});
+</script>
+</body>
+</html>
